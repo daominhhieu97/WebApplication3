@@ -1,0 +1,45 @@
+﻿@model dynamic
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+  @{ 
+      var counter_question = 1;
+  }
+  @using (Html.BeginForm("Check", "Home", FormMethod.Post))
+  {
+    foreach (WebApplication3.Models.CAUHOI cauhoi in Model.lst_cauhoi)
+    {
+        <strong>Câu hỏi @counter_question:</strong>
+        
+        <span>@Html.Label("CAUHOI1",cauhoi.CAUHOI1,new {name = counter_question})</span>
+        <br />
+        <strong>Câu trả lời:</strong> <br />
+
+        foreach (WebApplication3.Models.CAUTRALOI cautraloi in Model.lst_traloi)
+        {
+            if (cautraloi.ID_CAUHOI == cauhoi.ID)
+            {
+                @Html.RadioButton("cauhoi" + counter_question,cautraloi.ID);
+                @cautraloi.CAUTRALOI1;
+                <br />
+            }
+        }
+        counter_question++;
+        <hr />
+    }
+    <input type="submit" value="Submit your test" />
+  }
+
+    
+  
+</body>
+</html>
