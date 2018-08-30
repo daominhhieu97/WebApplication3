@@ -127,6 +127,19 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\img\bonchangtrai.png" />
+    <Content Include="Assets\img\dacnhantam.png" />
+    <Content Include="Assets\img\doingan.png" />
+    <Content Include="Assets\img\footer\thanhtoan.png" />
+    <Content Include="Assets\img\lienhe\chamhoi.png" />
+    <Content Include="Assets\img\lienhe\hotro.png" />
+    <Content Include="Assets\img\lienhe\yahoo.png" />
+    <Content Include="Assets\img\nghidongian.png" />
+    <Content Include="Assets\img\nhagiakim.png" />
+    <Content Include="Assets\img\sliders\slider1.jpg" />
+    <Content Include="Assets\img\sliders\slider3.jpg" />
+    <Content Include="Assets\img\footer\tintuc.png" />
+    <Content Include="Assets\img\Trangchu\congty.png" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
@@ -150,7 +163,7 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Web.config" />
     <Content Include="Views\LoginPage\Index.cshtml" />
-    <Content Include="Views\HomePage\Index.cshtml" />
+    <Content Include="Views\HomePage\GioiThieu.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -211,6 +224,9 @@
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\HomePage\LienHe.cshtml" />
+    <Content Include="Views\HomePage\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -220,7 +236,11 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Assets\img\" />
+    <Folder Include="Assets\Login\css\" />
+    <Folder Include="Assets\Login\fonts\" />
+    <Folder Include="Assets\Login\images\" />
+    <Folder Include="Assets\Login\js\" />
+    <Folder Include="Assets\Login\vendor\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
