@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     Layout = null;
 }
 
@@ -12,52 +11,77 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
     <title>Index</title>
 </head>
 <body>
+  <style>
+     .dropdown:hover > .dropdown-menu{
+         display:block;
+     }
+</style>
     <header>
         <div class="container">
             <!--NAVBAR-->
             <div class="row">
                 <div class="col-lg-12">
-                    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+                    <nav class="navbar navbar-expand-sm bg-dark navbar-dark sticky-top">
                         <ul class="navbar-nav">
                             <li class="nav-item active">
-                                <span></span>
-                                @Html.ActionLink("Trang Chủ", "Index", "HomePage", new { @class = "nav-link" })
+                                @Html.ActionLink("TRANG CHỦ", "Index", "HomePage", new { @class = "nav-link"})
                             </li>
                             <li class="nav-item">
-                                @Html.ActionLink("Giới Thiệu","GioiThieu","HomePage",new {@class="nav-link"})
+                                @Html.ActionLink("GIỚI THIỆU","GioiThieu","HomePage",new {@class="nav-link"})
                             </li>
                             <li class="nav-item">
-                                @Html.ActionLink("Liên Hệ", "LienHe", "HomePage", new { @class = "nav-link"})
+                                @Html.ActionLink("LIÊN HỆ", "ToanBoTheLoai", "HomePage", new { @class = "nav-link"})
                             </li>
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-                                    Danh Mục Sách
+                                <a class="nav-link dropdown-toggle" href="@Url.Action("ToanBoTheLoai","HomePage")" id="navbardrop" data-toggle="dropdown">
+                                    DANH MỤC SÁCH
                                 </a>
-                                <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="#">Phiêu Lưu</a>
-                                    <a class="dropdown-item" href="#">Hành Động</a>
-                                    <a class="dropdown-item" href="#">Tình Cảm</a>
-                                    <a class="dropdown-item" href="#">Phát Triển Bản Thân</a>
-                                    <a class="dropdown-item" href="#">Hài</a>
-                                </div>
+                                @{
+                                   Html.RenderAction("_DanhSachTheLoai", "HomePage");
+                                }
                             </li>
                         </ul>
+
+                        <!--Thanh tìm kiếm-->
+                        @using (Html.BeginForm("TimKiem", "HomePage", FormMethod.Post))
+                        {
+                            <div class="input-group mb-3 " style="max-width:500px; padding-top: 15px; padding-left:20px;">
+                                @Html.TextBox("noidungtimkiem", null, new { @class = "form-control", placeholder = "Điền tên sách cần tìm kiếm...", style = "width: 300px;" })
+                                <div class="input-group-append">
+                                    <button class="btn btn-success" type="submit">Tìm kiếm</button>
+                                </div>
+                            </div>
+                        }
+
+                        @{ 
+                            WebBook.Models.NguoiDung nd = Session["nguoidung"] as WebBook.Models.NguoiDung; 
+                        }
                         <ul class="navbar-nav ml-auto">
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">ĐĂNG KÝ</a>
+                            <li class="nav-item" style="color:white;padding-top:7px; padding-right: 5px;">
+                                @nd.Ten
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">ĐĂNG NHẬP</a>
+                            <li class="nav-item" style="padding-top: 8px;">
+                                <a href="@Url.Action("XemGioHang","HomePage")"><i class="fas fa-shopping-cart"></i> <span style="color:white;">GIỎ HÀNG</span></a>
                             </li>
                         </ul>
                     </nav>
                 </div>
-
             </div>
 
+            <div class="row">
+                <div class="col-lg-12">
+                    <marquee direction="left" style="padding-top: 20px; padding-bottom: 3px;">
+                        <a href="#">✦CHƯƠNG TRÌNH KHUYẾN MÃI ĐẶC BIỆT 2/9          </a>
+                        <a href="#">✦BỘ SÁCH COMBO SGK CHO TRẺ EM          </a>
+                        <a href="#">✦TRUYỆN NGÔN TÌNH GIẢM GIÁ ĐẶC BIỆT          </a>
+                        <a href="#">✦KHUYẾN MÃI TRONG NGÀY          </a>
+                    </marquee>
+                </div>
+            </div>
 
             <!--Sliders-->
             <div class="row">
@@ -74,7 +98,7 @@
                         <div class="carousel-inner">
                             <div class="carousel-item active">
                                 <img src="~/Assets/img/sliders/slider3.jpg" style="width:100%;height:70%;" alt="None">
-                            </div>!
+                            </div>
                             <div class="carousel-item">
                                 <img src="~/Assets/img/sliders/slider3.jpg" style="width:100%;height:70%;" alt="None">
                             </div>
@@ -94,49 +118,48 @@
             </div>
         </div>
     </header>
-   
-     @RenderBody()
+
+    @RenderBody()
 
 
     <footer style="border-top: 3px dashed grey; margin-top: 20px;">
         <div class="container">
             <div class="row">
                 <div class="col-lg-3">
-                    <b>TRỢ GIÚP</b>
+                    <b>VỀ CÔNG TY</b>
                     <ul>
-                        <li>Quy định sử dụng</li>
-                        <li>Quy định sử dụng</li>
-                        <li>Quy định sử dụng</li>
-                        <li>Quy định sử dụng</li>
-                        <li>Quy định sử dụng</li>
-                        <li>Quy định sử dụng</li>
+                        <li>Giới thiệu công ty</li>
+                        <li>Tuyển dụng</li>
+                        <li>Góc báo chí</li>
+                        <li>Chương trình đại lý</li>
+                        <li>Chính sách bảo mật</li>
+                        <li>Ứng dụng ebook</li>
                     </ul>
                 </div>
                 <div class="col-lg-3">
                     <b>TRỢ GIÚP</b>
                     <ul>
                         <li>Quy định sử dụng</li>
-                        <li>Quy định sử dụng</li>
-                        <li>Quy định sử dụng</li>
-                        <li>Quy định sử dụng</li>
-                        <li>Quy định sử dụng</li>
-                        <li>Quy định sử dụng</li>
+                        <li>Hướng dẫn mua hàng</li>
+                        <li>Phương thức thanh toán</li>
+                        <li>Phương thức vận chuyển</li>
+                        <li>Các câu hỏi thường gặp</li>
+                        <li>BỌC SÁCH BẰNG BÌA PLASTIC</li>
                     </ul>
                 </div>
                 <div class="col-lg-3">
                     <b>TIN TỨC SÁCH</b>
                     <ul>
-                        <li>Quy định sử dụng</li>
-                        <li>Quy định sử dụng</li>
-                        <li>Quy định sử dụng</li>
-                        <li>Quy định sử dụng</li>
-                        <li>Quy định sử dụng</li>
-                        <li>Quy định sử dụng</li>
+                        <li>Tin tức</li>
+                        <li>Chân dung </li>
+                        <li>Điểm sách</li>
+                        <li>Phê bình</li>
+
                     </ul>
                 </div>
                 <div class="col-lg-2">
                     <b>TIN TỨC SÁCH</b> <br />
-                    <img src="~/Assets/img/footer/tintuc.png"/>
+                    <img src="~/Assets/img/footer/tintuc.png" />
                 </div>
                 <div class="col-lg-1">
                     <b>THANH TOÁN</b> <br />

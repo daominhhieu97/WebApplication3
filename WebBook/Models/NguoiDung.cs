@@ -14,6 +14,12 @@ namespace WebBook.Models
     
     public partial class NguoiDung
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public NguoiDung()
+        {
+            this.DonHangs = new HashSet<DonHang>();
+        }
+    
         public int ID { get; set; }
         public string Ten { get; set; }
         public string SDT { get; set; }
@@ -22,6 +28,7 @@ namespace WebBook.Models
         public string TaiKhoan { get; set; }
         public string MatKhau { get; set; }
     
-        public virtual DonHang DonHang { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<DonHang> DonHangs { get; set; }
     }
 }

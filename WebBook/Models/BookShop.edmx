@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="BOOKWEBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="BOOKWEBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="ChiTiet">
           <Key>
             <PropertyRef Name="ID" />
@@ -89,15 +89,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_DonHang_NguoiDung">
-          <End Role="NguoiDung" Type="Self.NguoiDung" Multiplicity="1" />
-          <End Role="DonHang" Type="Self.DonHang" Multiplicity="0..1" />
+        <Association Name="FK_DonHang_NguoiDung1">
+          <End Role="NguoiDung" Type="Self.NguoiDung" Multiplicity="0..1" />
+          <End Role="DonHang" Type="Self.DonHang" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="NguoiDung">
               <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="DonHang">
-              <PropertyRef Name="MaDonHang" />
+              <PropertyRef Name="ID_NguoiMua" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -128,7 +128,7 @@
             <End Role="Sach" EntitySet="Sach" />
             <End Role="ChiTiet" EntitySet="ChiTiet" />
           </AssociationSet>
-          <AssociationSet Name="FK_DonHang_NguoiDung" Association="Self.FK_DonHang_NguoiDung">
+          <AssociationSet Name="FK_DonHang_NguoiDung1" Association="Self.FK_DonHang_NguoiDung1">
             <End Role="NguoiDung" EntitySet="NguoiDung" />
             <End Role="DonHang" EntitySet="DonHang" />
           </AssociationSet>
@@ -137,8 +137,7 @@
             <End Role="Sach" EntitySet="Sach" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="BOOKWEBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -164,7 +163,7 @@
           <Property Name="DiaChiGiao" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="SoDT" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="ChiTiets" Relationship="Self.FK_ChiTiet_DonHang" FromRole="DonHang" ToRole="ChiTiet" />
-          <NavigationProperty Name="NguoiDung" Relationship="Self.FK_DonHang_NguoiDung" FromRole="DonHang" ToRole="NguoiDung" />
+          <NavigationProperty Name="NguoiDung1" Relationship="BOOKWEBModel.FK_DonHang_NguoiDung1" FromRole="DonHang" ToRole="NguoiDung" />
         </EntityType>
         <EntityType Name="NguoiDung">
           <Key>
@@ -177,7 +176,7 @@
           <Property Name="DiaChi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="TaiKhoan" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="MatKhau" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="DonHang" Relationship="Self.FK_DonHang_NguoiDung" FromRole="NguoiDung" ToRole="DonHang" />
+          <NavigationProperty Name="DonHangs" Relationship="BOOKWEBModel.FK_DonHang_NguoiDung1" FromRole="NguoiDung" ToRole="DonHang" />
         </EntityType>
         <EntityType Name="Sach">
           <Key>
@@ -234,18 +233,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_DonHang_NguoiDung">
-          <End Role="NguoiDung" Type="Self.NguoiDung" Multiplicity="1" />
-          <End Role="DonHang" Type="Self.DonHang" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="NguoiDung">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="DonHang">
-              <PropertyRef Name="MaDonHang" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Sach_TheLoai">
           <End Role="TheLoai" Type="Self.TheLoai" Multiplicity="0..1" />
           <End Role="Sach" Type="Self.Sach" Multiplicity="*" />
@@ -273,15 +260,27 @@
             <End Role="Sach" EntitySet="Saches" />
             <End Role="ChiTiet" EntitySet="ChiTiets" />
           </AssociationSet>
-          <AssociationSet Name="FK_DonHang_NguoiDung" Association="Self.FK_DonHang_NguoiDung">
-            <End Role="NguoiDung" EntitySet="NguoiDungs" />
-            <End Role="DonHang" EntitySet="DonHangs" />
-          </AssociationSet>
           <AssociationSet Name="FK_Sach_TheLoai" Association="Self.FK_Sach_TheLoai">
             <End Role="TheLoai" EntitySet="TheLoais" />
             <End Role="Sach" EntitySet="Saches" />
           </AssociationSet>
+          <AssociationSet Name="FK_DonHang_NguoiDung1" Association="BOOKWEBModel.FK_DonHang_NguoiDung1">
+            <End Role="NguoiDung" EntitySet="NguoiDungs" />
+            <End Role="DonHang" EntitySet="DonHangs" />
+          </AssociationSet>
         </EntityContainer>
+        <Association Name="FK_DonHang_NguoiDung1">
+          <End Type="BOOKWEBModel.NguoiDung" Role="NguoiDung" Multiplicity="0..1" />
+          <End Type="BOOKWEBModel.DonHang" Role="DonHang" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NguoiDung">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="DonHang">
+              <PropertyRef Name="ID_NguoiMua" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -354,7 +353,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-        </EntityContainerMapping>
+          </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>

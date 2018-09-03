@@ -20,6 +20,7 @@ namespace WebBook.Controllers
             NguoiDung tmp = db.NguoiDungs.Where(m => m.TaiKhoan == nd.TaiKhoan).First(); 
             if ( tmp.MatKhau.Equals(nd.MatKhau))
             {
+                Session["nguoidung"] = tmp;
                 return RedirectToAction("Index", "HomePage");
             }
             return View("Index");

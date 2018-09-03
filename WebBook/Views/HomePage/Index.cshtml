@@ -5,25 +5,25 @@
 }
 
 
-<div class="container">
-    <h2 style="border-bottom: 3px dashed green; color:green;">TẤT CẢ SÁCH</h2>
-    <div class="row">
+
+    <div class="container">
+        <h2 style="border-bottom: 3px dashed green; color:green;">TẤT CẢ SÁCH</h2>
         <div class="card-deck">
-            @foreach (var sach in Model)
-                    {
-                        string path_img = "~/Assets/img/" + sach.Anhbia;
-                <div class="col-lg-4">
-                  <a href="#">
-                      <img class="card-img-top" src="@Url.Content(path_img)" alt="Card image cap" style="height:400px;width:100%;">
-                    </a>  
-                    <div class="card-body">
-                        <a href="#"><h4 class="card-title">@sach.TenSach</h4></a>
-                        <p class="card-text">This is my book</p>
-                        <p class="card-text"><small class="text-muted">@sach.Gia</small></p>
+            <div class="row">
+                @foreach (var sach in Model)
+                {
+                    string path_img = "~/Assets/img/" + sach.Anhbia;
+                    <div class="col-lg-4">
+                        <a href="#">
+                            <img class="card-img-top" src="@Url.Content(path_img)" alt="Card image cap" style="height:400px;width:100%;">
+                        </a>
+                        <div class="card-body">
+                            <a href="#"><h4 class="card-title">@sach.TenSach</h4></a>
+                            <p class="card-text">This is my book</p>
+                            <p class="card-text"><strong>@sach.Gia VND </strong><a href="@Url.Action("ThemSanPham","HomePage",new { id = sach.ID, returnurl = Request.Url.AbsoluteUri })" class="btn btn-danger">Thêm giỏ hàng</a></p>
+                        </div>
                     </div>
-                </div>
-            }
+                }
+            </div>
         </div>
     </div>
-    
-</div>

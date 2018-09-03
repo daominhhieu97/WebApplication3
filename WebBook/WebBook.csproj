@@ -127,18 +127,28 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\css\404\style.css" />
+    <Content Include="Assets\img\biquyettruongtho.png" />
     <Content Include="Assets\img\bonchangtrai.png" />
     <Content Include="Assets\img\dacnhantam.png" />
     <Content Include="Assets\img\doingan.png" />
     <Content Include="Assets\img\footer\thanhtoan.png" />
+    <Content Include="Assets\img\honnhiennhu.png" />
     <Content Include="Assets\img\lienhe\chamhoi.png" />
     <Content Include="Assets\img\lienhe\hotro.png" />
     <Content Include="Assets\img\lienhe\yahoo.png" />
+    <Content Include="Assets\img\lonlen.png" />
+    <Content Include="Assets\img\matsangnhusao.png" />
+    <Content Include="Assets\img\Muahang\shoppingcart.png" />
+    <Content Include="Assets\img\namngudungluc.png" />
     <Content Include="Assets\img\nghidongian.png" />
+    <Content Include="Assets\img\nghiemtucthi.png" />
     <Content Include="Assets\img\nhagiakim.png" />
+    <Content Include="Assets\img\nheten.png" />
     <Content Include="Assets\img\sliders\slider1.jpg" />
     <Content Include="Assets\img\sliders\slider3.jpg" />
     <Content Include="Assets\img\footer\tintuc.png" />
+    <Content Include="Assets\img\taitonghe.png" />
     <Content Include="Assets\img\Trangchu\congty.png" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
@@ -193,6 +203,7 @@
     <Compile Include="Models\DonHang.cs">
       <DependentUpon>BookShop.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\GioHang.cs" />
     <Compile Include="Models\NguoiDung.cs">
       <DependentUpon>BookShop.tt</DependentUpon>
     </Compile>
@@ -227,6 +238,14 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\HomePage\LienHe.cshtml" />
     <Content Include="Views\HomePage\Index.cshtml" />
+    <Content Include="Views\HomePage\TimKiem.cshtml" />
+    <Content Include="Views\HomePage\XemGioHang.cshtml" />
+    <Content Include="Views\Shared\ErrorPage.cshtml" />
+    <Content Include="Views\HomePage\_DanhSachTheLoai.cshtml" />
+    <Content Include="Views\HomePage\TheLoai.cshtml" />
+    <Content Include="Views\HomePage\DatHang.cshtml" />
+    <Content Include="Views\HomePage\MuaHang.cshtml" />
+    <Content Include="Views\HomePage\ToanBoTheLoai.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -13,8 +13,8 @@
         <EntityTypeShape EntityType="BOOKWEBModel.TheLoai" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
         <AssociationConnector Association="BOOKWEBModel.FK_ChiTiet_DonHang" ManuallyRouted="false" />
         <AssociationConnector Association="BOOKWEBModel.FK_ChiTiet_Sach" ManuallyRouted="false" />
-        <AssociationConnector Association="BOOKWEBModel.FK_DonHang_NguoiDung" ManuallyRouted="false" />
         <AssociationConnector Association="BOOKWEBModel.FK_Sach_TheLoai" ManuallyRouted="false" />
+        <AssociationConnector Association="BOOKWEBModel.FK_DonHang_NguoiDung1" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

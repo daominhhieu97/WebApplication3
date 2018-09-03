@@ -1,0 +1,74 @@
+﻿@model WebBook.Models.GioHang
+@{
+    ViewBag.Title = "DatHang";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+   <div class="container" style="border: 5px dotted grey ">
+       <div><h1 style="text-align:center;text-decoration:underline">THÔNG TIN ĐƠN HÀNG</h1></div>
+       
+       @using (Html.BeginForm("MuaHang", "HomePage", FormMethod.Post))
+       {
+           WebBook.Models.NguoiDung nd = Session["nguoidung"] as WebBook.Models.NguoiDung;
+        <div class="form-group">
+           TÊN NGƯỜI MUA HÀNG:  @Html.TextBox("tennguoimua",@nd.Ten,new {@class="form-control form-control-lg" })
+        </div>
+        <div class="form-group">
+            SỐ ĐIỆN THOẠI: @Html.TextBox("sodienthoai", null, new { @class = "form-control form-control-lg", placeholder = "Điền số điện thoại người nhận hàng..."})
+        </div>
+        <div class="form-group">
+            ĐỊA CHỈ NHẬN HÀNG: @Html.TextBox("diachi", null, new { @class = "form-control form-control-lg", placeholder = "Điền địa chỉ người nhận hàng..."})
+        </div>
+        <p>CHI TIẾT SẢN PHẨM BẠN CHỌN: </p>
+        <div class="table-responsive">
+            <table class="table">
+                @foreach (var sach in Model.LST_SACHS)
+                {
+
+                    string path_img = "~/Assets/img/" + sach.Anhbia;
+                    double thanhtien = (double)sach.Gia;
+                    <thead>
+                        <tr>
+                            <th>Ảnh bìa</th>
+                            <th>Tên sách</th>
+                            <th>Gía sách</th>
+                            <th>Số lượng</th>
+                            <th>Thành tiền</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <img src="@Url.Content(path_img)" alt="Card image cap" style="height:200px;width:200px;">
+                            </td>
+                            <td>@sach.TenSach</td>
+                            <td>@sach.Gia</td>
+                            <td>1</td>
+                            <td>@thanhtien</td>
+                        </tr>
+                    </tbody>
+                }
+                <tfoot>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td><h2>TỔNG TIỀN</h2></td>
+                        <td><p style="font-weight:bolder; font-size:30px;"><b>@Model.totalprice</b></p></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>
+                            <button type="submit" class="btn btn-success btn-lg">MUA HÀNG</button>
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+       }
+   </div>
+  
+    
+

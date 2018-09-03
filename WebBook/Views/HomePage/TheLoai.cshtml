@@ -1,0 +1,28 @@
+﻿@model IEnumerable<WebBook.Models.Sach>
+
+@{
+    ViewBag.Title = "TheLoai";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <h2 style="border-bottom: 3px dashed green; color:green;">SÁCH THỂ LOẠI: @ViewBag.tentheloai</h2>
+    <div class="card-deck">
+        <div class="row">
+            @foreach (var sach in Model)
+            {
+                string path_img = "~/Assets/img/" + sach.Anhbia;
+                <div class="col-lg-*">
+                    <a href="#">
+                        <img class="card-img-top" src="@Url.Content(path_img)" alt="Card image cap" style="height:400px;width:100%;">
+                    </a>
+                    <div class="card-body">
+                        <a href="#"><h4 class="card-title">@sach.TenSach</h4></a>
+                        <p class="card-text">This is my book</p>
+                        <p class="card-text"><strong>@sach.Gia VND </strong><a href="@Url.Action("ThemSanPham","HomePage",new { id = sach.ID, returnurl = Request.Url.AbsoluteUri })" class="btn btn-danger">Thêm giỏ hàng</a></p>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
