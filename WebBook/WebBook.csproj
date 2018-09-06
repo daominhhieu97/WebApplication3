@@ -150,6 +150,7 @@
     <Content Include="Assets\img\footer\tintuc.png" />
     <Content Include="Assets\img\taitonghe.png" />
     <Content Include="Assets\img\Trangchu\congty.png" />
+    <Content Include="Assets\img\Trangchu\shoppingcart.png" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
@@ -246,6 +247,11 @@
     <Content Include="Views\HomePage\DatHang.cshtml" />
     <Content Include="Views\HomePage\MuaHang.cshtml" />
     <Content Include="Views\HomePage\ToanBoTheLoai.cshtml" />
+    <Content Include="Views\HomePage\_GioHang.cshtml" />
+    <Content Include="Views\HomePage\QuanLyGioHang.cshtml" />
+    <Content Include="Views\HomePage\GuiEmail.cshtml" />
+    <Content Include="Views\HomePage\QuanLyNguoiDung.cshtml" />
+    <Content Include="Views\HomePage\QuanLyNguoiDung_test.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -256,10 +262,8 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Assets\Login\css\" />
-    <Folder Include="Assets\Login\fonts\" />
-    <Folder Include="Assets\Login\images\" />
     <Folder Include="Assets\Login\js\" />
-    <Folder Include="Assets\Login\vendor\" />
+    <Folder Include="Assets\Login\scss\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

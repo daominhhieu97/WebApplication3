@@ -1,0 +1,11 @@
+﻿@{ 
+    int soluong = ViewBag.SoLuongTrongGioHang;
+}
+<div class="dropdown-menu">
+    <a class="dropdown-item" href="@Url.Action("XemGioHang","HomePage")">
+        GIỎ HÀNG CỦA BẠN
+        <span class="badge badge-pill badge-secondary">@soluong</span>
+     </a>
+    <a class="dropdown-item" href="@Url.Action("QuanLyGioHang","HomePage")">QUẢN LÝ GIỎ HÀNG</a>
+</div>
+

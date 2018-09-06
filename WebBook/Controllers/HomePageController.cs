@@ -4,6 +4,9 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using WebBook.Models;
+using System.Net.Mail;
+using System.Net;
+using System.Threading.Tasks;
 
 namespace WebBook.Controllers
 {
@@ -15,10 +18,10 @@ namespace WebBook.Controllers
         // GET: HomePage
         public ActionResult Index()
         {
-                
-                List<Sach> lst_sachs = db.Saches.ToList();
-                return View(lst_sachs);
-            
+
+            List<Sach> lst_sachs = db.Saches.ToList();
+            return View(lst_sachs);
+
         }
         public ActionResult GioiThieu()
         {
@@ -63,12 +66,18 @@ namespace WebBook.Controllers
             List<TheLoai> lst_theloais = db.TheLoais.ToList();
             return PartialView(lst_theloais);
         }
+        public ActionResult _GioHang()
+        {
+            int soluong = giohang.LST_SACHS.Count();
+            ViewBag.SoLuongTrongGioHang = soluong;
+            return PartialView();
+        }
         public ActionResult DatHang()
         {
             return View(giohang);
         }
         [HttpPost]
-        public ActionResult MuaHang(FormCollection fc)
+        public async Task<ActionResult> MuaHang(FormCollection fc)
         {
             WebBook.Models.NguoiDung nd = Session["nguoidung"] as WebBook.Models.NguoiDung;
             DonHang dh = new DonHang();
@@ -76,6 +85,9 @@ namespace WebBook.Controllers
             dh.SoDT = fc["sodienthoai"].ToString();
             dh.DiaChiGiao = fc["diachi"].ToString();
             dh.TongTien = giohang.totalprice;
+            DateTime today = DateTime.Now;
+            dh.NgayDat = today;
+            dh.TrangThai = false;
             db.DonHangs.Add(dh);
             db.SaveChanges();
             foreach (var chitietdonhang in giohang.LST_SACHS)
@@ -89,6 +101,29 @@ namespace WebBook.Controllers
                 db.SaveChanges();
             }
             giohang.LST_SACHS.Clear();
+
+            //gửi email
+            var body = "<p>Email From: {0} ({1})</p> <p>Message:</p><p>BẠN VỪA ĐẶT HÀNG THÀNH CÔNG ĐƠN HÀNG: " + dh.MaDonHang + "</p>" + "<p>TỔNG TIỀN: " + dh.TongTien + "</p>" + "<p>NGÀY ĐẶT HÀNG: " + dh.NgayDat + "</p>";
+            var message = new MailMessage();
+            message.To.Add(new MailAddress(nd.Email));  // replace with valid value 
+            message.From = new MailAddress("hieudm97@gmail.com");  // replace with valid value
+            message.Subject = "ĐẶT HÀNG THÀNH CÔNG";
+            message.Body = string.Format(body, "ĐÀO MINH HIẾU", "hieudm97@gmail.com");
+            message.IsBodyHtml = true;
+
+            using (var smtp = new SmtpClient())
+            {
+                var credential = new NetworkCredential
+                {
+                    UserName = "hieudm97@gmail.com",  // replace with valid value
+                    Password = "hieudm231197"  // replace with valid value
+                };
+                smtp.Credentials = credential;
+                smtp.Host = "smtp.gmail.com";
+                smtp.Port = 587;
+                smtp.EnableSsl = true;
+                await smtp.SendMailAsync(message);
+            }
             return View();
         }
         public ActionResult ToanBoTheLoai()
@@ -96,6 +131,28 @@ namespace WebBook.Controllers
             ViewBag.Sachs = db.Saches.ToList();
             ViewBag.TheLoais = db.TheLoais.ToList();
             return View();
+        }
+        public ActionResult QuanLyGioHang()
+        {
+            NguoiDung nd = Session["nguoidung"] as NguoiDung;
+            List<DonHang> lst_donhang = db.DonHangs.Where(m => m.ID_NguoiMua == nd.ID).ToList();
+            return View(lst_donhang);
+        }
+        public ActionResult QuanLyNguoiDung(int id)
+        {
+            NguoiDung nd = db.NguoiDungs.Where(m => m.ID == id).First();
+            return View(nd);
+        }
+        [HttpPost]
+        public ActionResult CapNhatThongTinNguoiDung(NguoiDung nd)
+        {
+            NguoiDung capnhat = db.NguoiDungs.Where(m => m.ID == nd.ID).FirstOrDefault();
+            capnhat.Ten = nd.Ten;
+            capnhat.SDT = nd.SDT;
+            capnhat.DiaChi = nd.DiaChi;
+            capnhat.Email = nd.Email;
+            db.SaveChanges();
+            return RedirectToAction("Index");
         }
     }
 }

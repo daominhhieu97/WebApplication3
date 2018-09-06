@@ -1,0 +1,54 @@
+﻿@model IEnumerable<WebBook.Models.DonHang>
+@{
+    ViewBag.Title = "QuanLyGioHang";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="container">
+    <h1>ĐƠN HÀNG CỦA TÔI</h1>
+    @if (Model.Count() == 0)
+    {
+        <p>BẠN CHƯA CÓ ĐƠN HÀNG NÀO. HÃY QUAY LẠI TRANG CHỦ ĐỂ MUA THÊM SẢN PHẨM.</p>
+        <div class="mx-auto">
+            <a href="@Url.Action("Index","HomePage")" class="btn btn-success">Quay lại Trang Chủ</a>
+        </div>
+    }
+    else
+    {
+        <table class="table table-dark table-striped">
+            <thead>
+                <tr>
+                    <th>Mã đơn hàng</th>
+                    <th>Ngày mua</th>
+                    <th>ĐỊA CHỈ GIAO</th>
+                    <th>Tổng tiền</th>
+                    <th>Trạng thái đơn hàng</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var donhang in Model)
+                {
+                    <tr>
+                        <td>@donhang.MaDonHang</td>
+                        <td>@donhang.NgayDat</td>
+                        <td>@donhang.DiaChiGiao</td>
+                        <td>@donhang.TongTien VND</td>
+                        @if (donhang.TrangThai == false)
+                        {
+                        <td>ĐANG XỬ LÝ</td>
+                        }
+                        else
+                        {
+                        <td>ĐÃ XỬ LÝ</td>
+                        }
+                    </tr>
+                  
+                }
+            </tbody>
+        </table>
+    }
+</div>
+
+
+

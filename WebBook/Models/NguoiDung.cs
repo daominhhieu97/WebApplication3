@@ -27,6 +27,7 @@ namespace WebBook.Models
         public string DiaChi { get; set; }
         public string TaiKhoan { get; set; }
         public string MatKhau { get; set; }
+        public string Email { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DonHang> DonHangs { get; set; }

@@ -24,6 +24,8 @@
           <Property Name="TongTien" Type="float" />
           <Property Name="DiaChiGiao" Type="nvarchar(max)" />
           <Property Name="SoDT" Type="nvarchar(max)" />
+          <Property Name="NgayDat" Type="date" />
+          <Property Name="TrangThai" Type="bit" />
         </EntityType>
         <EntityType Name="NguoiDung">
           <Key>
@@ -36,6 +38,7 @@
           <Property Name="DiaChi" Type="nvarchar(max)" />
           <Property Name="TaiKhoan" Type="nvarchar(max)" />
           <Property Name="MatKhau" Type="nvarchar(max)" />
+          <Property Name="Email" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="Sach">
           <Key>
@@ -164,6 +167,8 @@
           <Property Name="SoDT" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="ChiTiets" Relationship="Self.FK_ChiTiet_DonHang" FromRole="DonHang" ToRole="ChiTiet" />
           <NavigationProperty Name="NguoiDung1" Relationship="BOOKWEBModel.FK_DonHang_NguoiDung1" FromRole="DonHang" ToRole="NguoiDung" />
+          <Property Name="NgayDat" Type="DateTime" Precision="0" />
+          <Property Name="TrangThai" Type="Boolean" />
         </EntityType>
         <EntityType Name="NguoiDung">
           <Key>
@@ -177,6 +182,7 @@
           <Property Name="TaiKhoan" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="MatKhau" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="DonHangs" Relationship="BOOKWEBModel.FK_DonHang_NguoiDung1" FromRole="NguoiDung" ToRole="DonHang" />
+          <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Sach">
           <Key>
@@ -301,6 +307,8 @@
           <EntitySetMapping Name="DonHangs">
             <EntityTypeMapping TypeName="BOOKWEBModel.DonHang">
               <MappingFragment StoreEntitySet="DonHang">
+                <ScalarProperty Name="TrangThai" ColumnName="TrangThai" />
+                <ScalarProperty Name="NgayDat" ColumnName="NgayDat" />
                 <ScalarProperty Name="MaDonHang" ColumnName="MaDonHang" />
                 <ScalarProperty Name="ID_NguoiMua" ColumnName="ID_NguoiMua" />
                 <ScalarProperty Name="TongTien" ColumnName="TongTien" />
@@ -312,6 +320,7 @@
           <EntitySetMapping Name="NguoiDungs">
             <EntityTypeMapping TypeName="BOOKWEBModel.NguoiDung">
               <MappingFragment StoreEntitySet="NguoiDung">
+                <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Ten" ColumnName="Ten" />
                 <ScalarProperty Name="SDT" ColumnName="SDT" />
